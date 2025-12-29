@@ -7,6 +7,8 @@ public class Book {
     private String isbn;
     private String type;
     private String borrowedBy;
+    private String borrowedDate;
+    private String dueDate;
 
     public Book(String title, String author, String genre, String isbn, String type) {
         this.title = title;
@@ -62,5 +64,21 @@ public class Book {
 
     public void setBorrowedBy(String borrowedBy) {
         this.borrowedBy = borrowedBy;
+    }
+
+    public String getBorrowedDate() {
+        return borrowedDate;
+    }
+
+    public void setBorrowedDate(String borrowedDate) {
+        this.borrowedDate = borrowedDate;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 }

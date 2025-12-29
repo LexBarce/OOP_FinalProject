@@ -28,6 +28,12 @@ public class BookDAO {
                     if (values.length > 5 && values[5] != null) {
                         book.setBorrowedBy(values[5]);
                     }
+                    if (values.length > 6 && values[6] != null) {
+                        book.setBorrowedDate(values[6]);
+                    }
+                    if (values.length > 7 && values[7] != null) {
+                        book.setDueDate(values[7]);
+                    }
                     books.add(book);
                 }
             }
@@ -43,11 +49,13 @@ public class BookDAO {
         saveBooks(books);
     }
 
-    public static void borrowBook(String title, String borrower) {
+    public static void borrowBook(String title, String borrower, String borrowDate, String dueDate) {
         List<Book> books = getAllBooks();
         for (Book book : books) {
             if (book.getTitle().equals(title)) {
                 book.setBorrowedBy(borrower);
+                book.setBorrowedDate(borrowDate);
+                book.setDueDate(dueDate);
                 break;
             }
         }
@@ -58,7 +66,9 @@ public class BookDAO {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Book book : books) {
                 String borrowedBy = book.getBorrowedBy() != null ? book.getBorrowedBy() : "";
-                String line = String.join(",", book.getTitle(), book.getAuthor(), book.getGenre(), book.getIsbn(), book.getType(), borrowedBy);
+                String borrowedDate = book.getBorrowedDate() != null ? book.getBorrowedDate() : "";
+                String dueDate = book.getDueDate() != null ? book.getDueDate() : "";
+                String line = String.join(",", book.getTitle(), book.getAuthor(), book.getGenre(), book.getIsbn(), book.getType(), borrowedBy, borrowedDate, dueDate);
                 bw.write(line);
                 bw.newLine();
             }

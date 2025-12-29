@@ -22,10 +22,13 @@ public class BookList extends javax.swing.JFrame {
 
     private void refreshTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+        model.setRowCount(0); // Clear existing rows
         List<Book> books = BookDAO.getAllBooks();
         for (Book book : books) {
-            model.addRow(new Object[]{book.getTitle(), book.getAuthor(), book.getGenre(), book.getBorrowedBy(), "Borrow"});
+            String borrowedBy = book.getBorrowedBy() != null ? book.getBorrowedBy() : "N/A";
+            String borrowedDate = book.getBorrowedDate() != null ? book.getBorrowedDate() : "N/A";
+            String dueDate = book.getDueDate() != null ? book.getDueDate() : "N/A";
+            model.addRow(new Object[]{book.getTitle(), book.getAuthor(), book.getGenre(), borrowedBy, borrowedDate, dueDate, "Borrow"});
         }
     }
 
@@ -256,13 +259,13 @@ public class BookList extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "BOOK TITLE", "AUTHOR", "GENRE", "BORROWED BY", "ACTION"
+                "BOOK TITLE", "AUTHOR", "GENRE", "BORROWED BY", "BORROW DATE", "DUE DATE", "ACTION"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

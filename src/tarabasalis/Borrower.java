@@ -3,6 +3,8 @@ package tarabasalis;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.Date; // Import Date class
+import com.toedter.calendar.JDateChooser; // Import JDateChooser
 
 /**
  *
@@ -19,8 +21,6 @@ public class Borrower extends javax.swing.JFrame {
     public Borrower() {
         initComponents();
         PlaceholderUtil.addPlaceholder(jTextField1, "Enter Book Name");
-        PlaceholderUtil.addPlaceholder(jTextField2, "mm/dd/yyyy");
-        PlaceholderUtil.addPlaceholder(jTextField3, "mm/dd/yyyy");
         PlaceholderUtil.addPlaceholder(jTextField4, "Enter your Name/Nickname");
     }
 
@@ -40,8 +40,8 @@ public class Borrower extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -90,11 +90,11 @@ public class Borrower extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        jDateChooser2.setDateFormatString("MM/dd/yyyy");
+        jDateChooser2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.addActionListener(this::jTextField3ActionPerformed);
+        jDateChooser3.setDateFormatString("MM/dd/yyyy");
+        jDateChooser3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField4.addActionListener(this::jTextField4ActionPerformed);
@@ -128,9 +128,9 @@ public class Borrower extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField4))
+                        .addComponent(jTextField4)
+                        .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -149,11 +149,11 @@ public class Borrower extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,34 +182,36 @@ public class Borrower extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         String borrowerName = jTextField4.getText();
-        String borrowDateStr = jTextField3.getText();
-        String dueDateStr = jTextField2.getText();
+        
+        Date borrowDate = jDateChooser3.getDate();
+        Date dueDate = jDateChooser2.getDate();
 
-        if (borrowerName.isEmpty() || borrowDateStr.isEmpty() || dueDateStr.isEmpty()
-                || borrowerName.equals("Enter your Name/Nickname")
-                || borrowDateStr.equals("mm/dd/yyyy") || dueDateStr.equals("mm/dd/yyyy")) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (borrowerName.isEmpty() || borrowerName.equals("Enter your Name/Nickname")) {
+            JOptionPane.showMessageDialog(this, "Please enter borrower name.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (borrowDate == null) {
+            JOptionPane.showMessageDialog(this, "Please select a borrow date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (dueDate == null) {
+            JOptionPane.showMessageDialog(this, "Please select a due date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validate due date is not before borrow date
+        if (dueDate.before(borrowDate)) {
+            JOptionPane.showMessageDialog(this, "Due Date cannot be before Borrow Date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        sdf.setLenient(false);
+        String borrowDateStr = sdf.format(borrowDate);
+        String dueDateStr = sdf.format(dueDate);
 
-        try {
-            sdf.parse(borrowDateStr);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "Invalid Borrow Date format. Please use MM/dd/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            sdf.parse(dueDateStr);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, "Invalid Due Date format. Please use MM/dd/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        BookDAO.borrowBook(bookTitle, borrowerName);
+        BookDAO.borrowBook(bookTitle, borrowerName, borrowDateStr, dueDateStr);
         JOptionPane.showMessageDialog(this, "Book borrowed successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         new BookList().setVisible(true);
@@ -259,6 +261,8 @@ public class Borrower extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -267,8 +271,6 @@ public class Borrower extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
