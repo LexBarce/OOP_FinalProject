@@ -67,7 +67,7 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" pref="186" max="-2" attributes="0"/>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,7 +89,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;  &lt;div style=&apos;padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;&apos;&gt;  &lt;img src=&apos;file:///C:/Users/User/Downloads/open-book.png&apos; width=&apos;50&apos; height=&apos;50&apos;&gt;&lt;br&gt; &lt;div style=&apos;font-size: 16px; font-weight: 425;&apos;&gt;Books List&lt;/div&gt;  &lt;div style=&apos;font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;&apos;&gt;Browse all the books&lt;br&gt;available in the library&lt;/div&gt;  &lt;/div&gt;  &lt;/html&gt;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
             </Property>
@@ -172,10 +172,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="82" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="95" max="-2" attributes="0"/>
-                          <EmptySpace pref="583" max="32767" attributes="0"/>
+                          <Component id="jButton2" min="-2" pref="112" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -184,7 +184,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="17" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jButton2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -200,7 +200,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;table cellpadding=&apos;4&apos; cellspacing=&apos;0&apos; style=&apos;font-family: Segoe UI, Arial, sans-serif;&apos;&gt;&#xa;&lt;tr&gt;&#xa;&lt;td&gt;&lt;img src=&apos;file:///C:/Users/User/Downloads/home.png&apos; width=&apos;16&apos; height=&apos;16&apos;&gt;&lt;/td&gt;&#xa;&lt;td style=&apos;padding-left: 2px;&apos;&gt;&lt;span style=&apos;font-size: 12px; font-weight: 500;&apos;&gt;Home&lt;/span&gt;&lt;/td&gt;&#xa;&lt;/tr&gt;&#xa;&lt;/table&gt;&#xa;&lt;/html&gt;"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
                     </Property>
                   </Properties>
                   <Events>
@@ -214,7 +216,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;table cellpadding=&apos;0&apos; cellspacing=&apos;0&apos; style=&apos;font-family: Segoe UI, Arial, sans-serif;&apos;&gt;&#xa;&lt;tr&gt;&#xa;&lt;td&gt;&lt;img src=&apos;file:///C:/Users/User/Downloads/open-book.png&apos; width=&apos;16&apos; height=&apos;16&apos;&gt;&lt;/td&gt;&#xa;&lt;td style=&apos;padding-left: 4px;&apos;&gt;&lt;span style=&apos;font-size: 12px; font-weight: 500;&apos;&gt;Book List&lt;/span&gt;&lt;/td&gt;&#xa;&lt;/tr&gt;&#xa;&lt;/table&gt;&#xa;&lt;/html&gt;"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
                     </Property>
                   </Properties>
                   <Events>
