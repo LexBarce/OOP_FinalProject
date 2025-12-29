@@ -63,8 +63,6 @@ public class BookList extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
@@ -87,12 +85,13 @@ public class BookList extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton1.setText("<html> <table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'> <tr> <td><img src='" + getClass().getResource("/../img/home.png") + "' width='16' height='16'></td> <td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td> </tr> </table> </html>");
+        jButton1.setText("<html> <table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'> <tr> <td><img src='file:///C:/Users/User/Downloads/home.png' width='16' height='16'></td> <td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td> </tr> </table> </html>");
+        jButton1.setActionCommand("<html> <table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'> <tr> <td><img src='file:///C:\\Users\\User\\Documents\\NetBeansProjects\\TaraBasaLIS\\img\\home.png' width='16' height='16'></td> <td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td> </tr> </table> </html>");
         jButton1.setBorder(null);
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='" + getClass().getResource("/../img/open-book.png") + "' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
+        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='file:///C:/Users/User/Downloads/open-book.png' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
         jButton2.setBorder(null);
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
@@ -245,17 +244,6 @@ public class BookList extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         jLabel8.setText("+ Books List");
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 204));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Search");
-        jButton4.setBorder(null);
-        jButton4.addActionListener(this::jButton4ActionPerformed);
-
-        jTextField5.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField5.setText("Search...");
-        jTextField5.addActionListener(this::jTextField5ActionPerformed);
-
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,29 +277,18 @@ public class BookList extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(36, 36, 36))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)))
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,14 +352,6 @@ public class BookList extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -459,7 +428,6 @@ public class BookList extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -482,6 +450,5 @@ public class BookList extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

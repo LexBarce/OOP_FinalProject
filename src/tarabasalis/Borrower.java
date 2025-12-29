@@ -179,7 +179,7 @@ public class Borrower extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         String borrowerName = jTextField4.getText();
         
-        Date borrowDate = jDateChooser3.getDate();
+        Date borrowDate = jDateChooser1.getDate();
         Date dueDate = jDateChooser2.getDate();
 
         if (borrowerName.isEmpty() || borrowerName.equals("Enter your Name/Nickname")) {
