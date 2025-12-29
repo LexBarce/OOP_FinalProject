@@ -1,9 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tarabasalis;
+
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date; // Import Date class
+import com.toedter.calendar.JDateChooser; // Import JDateChooser
+
 /**
  *
  * 
@@ -11,12 +13,21 @@ import javax.swing.JOptionPane;
 public class Borrower extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Borrower.class.getName());
+    private String bookTitle;
 
     /**
      * Creates new form Borrower
      */
     public Borrower() {
         initComponents();
+        PlaceholderUtil.addPlaceholder(jTextField1, "Enter Book Name");
+        PlaceholderUtil.addPlaceholder(jTextField4, "Enter your Name/Nickname");
+    }
+
+    public Borrower(String bookTitle) {
+        this();
+        this.bookTitle = bookTitle;
+        jTextField1.setText(bookTitle);
     }
     
     @SuppressWarnings("unchecked")
@@ -103,8 +114,8 @@ public class Borrower extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,9 +127,7 @@ public class Borrower extends javax.swing.JFrame {
                         .addComponent(jTextField4)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,12 +145,12 @@ public class Borrower extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,10 +176,42 @@ public class Borrower extends javax.swing.JFrame {
         new BookList().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        String borrowerName = jTextField4.getText();
+        
+        Date borrowDate = jDateChooser3.getDate();
+        Date dueDate = jDateChooser2.getDate();
+
+        if (borrowerName.isEmpty() || borrowerName.equals("Enter your Name/Nickname")) {
+            JOptionPane.showMessageDialog(this, "Please enter borrower name.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (borrowDate == null) {
+            JOptionPane.showMessageDialog(this, "Please select a borrow date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (dueDate == null) {
+            JOptionPane.showMessageDialog(this, "Please select a due date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validate due date is not before borrow date
+        if (dueDate.before(borrowDate)) {
+            JOptionPane.showMessageDialog(this, "Due Date cannot be before Borrow Date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String borrowDateStr = sdf.format(borrowDate);
+        String dueDateStr = sdf.format(dueDate);
+
+        BookDAO.borrowBook(bookTitle, borrowerName, borrowDateStr, dueDateStr);
         JOptionPane.showMessageDialog(this, "Book borrowed successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
         new BookList().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
