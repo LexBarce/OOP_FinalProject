@@ -1,9 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tarabasalis;
+
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
 /**
  *
  * @author User
@@ -11,12 +11,23 @@ import javax.swing.JOptionPane;
 public class Borrower extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Borrower.class.getName());
+    private String bookTitle;
 
     /**
      * Creates new form Borrower
      */
     public Borrower() {
         initComponents();
+        PlaceholderUtil.addPlaceholder(jTextField1, "Enter Book Name");
+        PlaceholderUtil.addPlaceholder(jTextField2, "mm/dd/yyyy");
+        PlaceholderUtil.addPlaceholder(jTextField3, "mm/dd/yyyy");
+        PlaceholderUtil.addPlaceholder(jTextField4, "Enter your Name/Nickname");
+    }
+
+    public Borrower(String bookTitle) {
+        this();
+        this.bookTitle = bookTitle;
+        jTextField1.setText(bookTitle);
     }
     
     @SuppressWarnings("unchecked")
@@ -77,23 +88,15 @@ public class Borrower extends javax.swing.JFrame {
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Enter Book Name");
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("mm/dd/yyyy");
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("mm/dd/yyyy");
         jTextField3.addActionListener(this::jTextField3ActionPerformed);
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField4.setText("Enter your Name/Nickname");
         jTextField4.addActionListener(this::jTextField4ActionPerformed);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -177,8 +180,38 @@ public class Borrower extends javax.swing.JFrame {
         new BookList().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        String borrowerName = jTextField4.getText();
+        String borrowDateStr = jTextField3.getText();
+        String dueDateStr = jTextField2.getText();
+
+        if (borrowerName.isEmpty() || borrowDateStr.isEmpty() || dueDateStr.isEmpty()
+                || borrowerName.equals("Enter your Name/Nickname")
+                || borrowDateStr.equals("mm/dd/yyyy") || dueDateStr.equals("mm/dd/yyyy")) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        sdf.setLenient(false);
+
+        try {
+            sdf.parse(borrowDateStr);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Borrow Date format. Please use MM/dd/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            sdf.parse(dueDateStr);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Due Date format. Please use MM/dd/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        BookDAO.borrowBook(bookTitle, borrowerName);
         JOptionPane.showMessageDialog(this, "Book borrowed successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
         new BookList().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

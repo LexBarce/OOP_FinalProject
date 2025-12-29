@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tarabasalis;
 
 /**
@@ -47,7 +43,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Welcome to TaraBasa Library Information System");
 
         jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton4.setText("<html>  <div style='padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;'>  <img src='file:///C:/Users/User/Downloads/open-book.png' width='50' height='50'><br> <div style='font-size: 16px; font-weight: 425;'>Books List</div>  <div style='font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;'>Browse all the books<br>available in the library</div>  </div>  </html>");
+        jButton4.setText("<html>  <div style='padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;'>  <img src='" + getClass().getResource("/../img/open-book.png") + "' width='50' height='50'><br> <div style='font-size: 16px; font-weight: 425;'>Books List</div>  <div style='font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;'>Browse all the books<br>available in the library</div>  </div>  </html>");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
@@ -65,12 +61,12 @@ public class Interface extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton1.setText("<html>\n<table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='file:///C:/Users/User/Downloads/home.png' width='16' height='16'></td>\n<td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td>\n</tr>\n</table>\n</html>");
+        jButton1.setText("<html>\n<table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='" + getClass().getResource("/../img/home.png") + "' width='16' height='16'></td>\n<td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td>\n</tr>\n</table>\n</html>");
         jButton1.setBorder(null);
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='file:///C:/Users/User/Downloads/open-book.png' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
+        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='" + getClass().getResource("/../img/open-book.png") + "' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
         jButton2.setBorder(null);
         jButton2.addActionListener(this::jButton2ActionPerformed);
 

@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tarabasalis;
+
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +17,16 @@ public class BookList extends javax.swing.JFrame {
      */
     public BookList() {
         initComponents();
+        refreshTable();
+    }
+
+    private void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        List<Book> books = BookDAO.getAllBooks();
+        for (Book book : books) {
+            model.addRow(new Object[]{book.getTitle(), book.getAuthor(), book.getGenre(), book.getBorrowedBy(), "Borrow"});
+        }
     }
 
     /**
@@ -74,12 +84,12 @@ public class BookList extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton1.setText("<html> <table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'> <tr> <td><img src='file:///C:/Users/User/Downloads/home.png' width='16' height='16'></td> <td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td> </tr> </table> </html>");
+        jButton1.setText("<html> <table cellpadding='4' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'> <tr> <td><img src='" + getClass().getResource("/../img/home.png") + "' width='16' height='16'></td> <td style='padding-left: 2px;'><span style='font-size: 12px; font-weight: 500;'>Home</span></td> </tr> </table> </html>");
         jButton1.setBorder(null);
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='file:///C:/Users/User/Downloads/open-book.png' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
+        jButton2.setText("<html>\n<table cellpadding='0' cellspacing='0' style='font-family: Segoe UI, Arial, sans-serif;'>\n<tr>\n<td><img src='" + getClass().getResource("/../img/open-book.png") + "' width='16' height='16'></td>\n<td style='padding-left: 4px;'><span style='font-size: 12px; font-weight: 500;'>Book List</span></td>\n</tr>\n</table>\n</html>");
         jButton2.setBorder(null);
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
@@ -243,7 +253,7 @@ public class BookList extends javax.swing.JFrame {
         jTextField5.setText("Search...");
         jTextField5.addActionListener(this::jTextField5ActionPerformed);
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -379,14 +389,33 @@ public class BookList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        String title = jTextField1.getText();
+        String author = jTextField2.getText();
+        String genre = jTextField3.getText();
+        String isbn = jTextField4.getText();
+        String type = (String) jComboBox1.getSelectedItem();
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (title.isEmpty() || author.isEmpty() || genre.isEmpty() || isbn.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        BookDAO.addBook(new Book(title, author, genre, isbn, type));
+        JOptionPane.showMessageDialog(this, "Book added successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        refreshTable();
+    }
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a book to borrow.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String bookTitle = (String) jTable1.getValueAt(selectedRow, 0);
         this.dispose();
-        new Borrower().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+        new Borrower(bookTitle).setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
