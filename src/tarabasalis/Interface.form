@@ -87,7 +87,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt; &#xa;&lt;div style=&apos;padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;&apos;&gt; &#xa;&lt;img src=&apos;file:///C:/Users/User/Downloads/open-book.png&apos; width=&apos;50&apos; height=&apos;50&apos;&gt;&lt;br&gt;&#xa;&lt;div style=&apos;font-size: 16px; font-weight: 425;&apos;&gt;Books List&lt;/div&gt; &#xa;&lt;div style=&apos;font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;&apos;&gt;Browse all the books&lt;br&gt;available in the library&lt;/div&gt; &#xa;&lt;/div&gt; &#xa;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;  &lt;div style=&apos;padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;&apos;&gt;  &lt;img src=&apos;file:///C:/Users/User/Downloads/open-book.png&apos; width=&apos;50&apos; height=&apos;50&apos;&gt;&lt;br&gt; &lt;div style=&apos;font-size: 16px; font-weight: 425;&apos;&gt;Books List&lt;/div&gt;  &lt;div style=&apos;font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;&apos;&gt;Browse all the books&lt;br&gt;available in the library&lt;/div&gt;  &lt;/div&gt;  &lt;/html&gt;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                 <BevelBorder/>

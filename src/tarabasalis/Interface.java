@@ -47,7 +47,8 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Welcome to TaraBasa Library Information System");
 
         jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton4.setText("<html> \n<div style='padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;'> \n<img src='file:///C:/Users/User/Downloads/open-book.png' width='50' height='50'><br>\n<div style='font-size: 16px; font-weight: 425;'>Books List</div> \n<div style='font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;'>Browse all the books<br>available in the library</div> \n</div> \n</html>");
+        jButton4.setText("<html>  <div style='padding: 15px; font-family: Segoe UI, Arial, sans-serif; text-align: center;'>  <img src='file:///C:/Users/User/Downloads/open-book.png' width='50' height='50'><br> <div style='font-size: 16px; font-weight: 425;'>Books List</div>  <div style='font-size: 12px; color: #666666; margin-top: 5px; font-weight: 100;'>Browse all the books<br>available in the library</div>  </div>  </html>");
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
@@ -162,11 +163,13 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new BookList().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new BookList().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -197,18 +200,12 @@ public class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
