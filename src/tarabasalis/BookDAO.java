@@ -44,6 +44,7 @@ public class BookDAO {
     }
 
     public static void addBook(Book book) {
+        System.out.println("BookDAO.addBook() called. Book received: " + book.getTitle());
         List<Book> books = getAllBooks();
         books.add(book);
         saveBooks(books);
@@ -63,6 +64,7 @@ public class BookDAO {
     }
 
     private static void saveBooks(List<Book> books) {
+        System.out.println("BookDAO.saveBooks() called. Saving " + books.size() + " books.");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Book book : books) {
                 String borrowedBy = book.getBorrowedBy() != null ? book.getBorrowedBy() : "";
@@ -73,6 +75,7 @@ public class BookDAO {
                 bw.newLine();
             }
         } catch (IOException e) {
+            System.err.println("Error saving books to CSV: " + e.getMessage());
             e.printStackTrace();
         }
     }

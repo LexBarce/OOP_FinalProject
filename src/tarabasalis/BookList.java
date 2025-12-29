@@ -399,14 +399,24 @@ public class BookList extends javax.swing.JFrame {
         String isbn = jTextField4.getText();
         String type = (String) jComboBox1.getSelectedItem();
 
+        System.out.println("Attempting to add book:");
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Genre: " + genre);
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Type: " + type);
+
         if (title.isEmpty() || author.isEmpty() || genre.isEmpty() || isbn.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        System.out.println("Calling BookDAO.addBook()...");
         BookDAO.addBook(new Book(title, author, genre, isbn, type));
+        System.out.println("BookDAO.addBook() called.");
         JOptionPane.showMessageDialog(this, "Book added successfully!", "Info", JOptionPane.INFORMATION_MESSAGE);
         refreshTable();
+        System.out.println("Table refreshed.");
     }
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
